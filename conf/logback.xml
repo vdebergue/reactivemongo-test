@@ -1,0 +1,27 @@
+<configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.libs.logback.ColoredLevel" />
+
+     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+         <encoder>
+             <pattern>%date %coloredLevel %logger - [%level] %message%n%xException</pattern>
+         </encoder>
+     </appender>
+
+     <!-- Disable external libs debug logs -->
+     <logger name="com" level="INFO" />
+     <logger name="javax" level="INFO" />
+     <logger name="org" level="INFO" />
+     <logger name="play" level="INFO" />
+     <logger name="scala" level="INFO" />
+     <logger name="org.apache" level="WARN" />
+     <logger name="reactivemongo" level="WARN" />
+    <logger name="io.netty" level="INFO" />
+    <logger name="sun" level="INFO" />
+
+     <!-- Set application internal logs -->
+     <root level="DEBUG">
+         <appender-ref ref="STDOUT" />
+     </root>
+
+</configuration>

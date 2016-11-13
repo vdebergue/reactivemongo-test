@@ -1,0 +1,5 @@
+GET  /        controllers.AppController.home
+GET  /create  controllers.AppController.createCapped
+GET  /bulk    controllers.AppController.tailBulk
+GET  /stream  controllers.AppController.tailBulkStream
+GET  /source  controllers.AppController.tailDoc
