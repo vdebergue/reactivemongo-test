@@ -65,6 +65,17 @@ class AppController(db: DefaultDB)(implicit mat: Materializer) extends Controlle
     Ok.chunked(source)
   }
 
+  def tailDocStream = Action {
+    val source = cursor()
+      .documentSource()
+      .map { id =>
+        println(s"Got 1 id")
+        id.toString + "\n"
+      }
+    val wr = Writeable.wString
+    Ok.sendEntity(HttpEntity.Streamed(source.map(wr.transform(_)), None, wr.contentType))
+  }
+
   def home = Action {
     Ok("ok")
   }
